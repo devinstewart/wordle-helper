@@ -1,0 +1,10 @@
+[package]
+name = "wordle-helper"
+version = "0.1.0"
+edition = "2021"
+description = "App to help you solve Wordle"
+
+[dependencies]
+iced = "0.10"
+rand = "0.8"
+fancy-regex = "0.12"
