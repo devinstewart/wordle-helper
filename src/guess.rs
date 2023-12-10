@@ -105,7 +105,7 @@ pub fn make_guess(mut known_status: KnownState) -> KnownState {
     let words = all_words();
 
     let re = Regex::new(&final_regex);
-    let all_possible_words: Vec<Word> = words.into_iter().filter(|word| {
+    let mut all_possible_words: Vec<Word> = words.into_iter().filter(|word| {
         match &re {
             Ok(re) => {
                 re.is_match(&word.word).unwrap()
@@ -116,17 +116,16 @@ pub fn make_guess(mut known_status: KnownState) -> KnownState {
         word
     }).collect();
 
-    let mut filtered_words = all_possible_words.clone();
     known_status.word_contains_only_one.iter().enumerate().for_each(|(_i, letter)| {
         let re = Regex::new(&format!("{}", letter)).unwrap();
-        filtered_words = filtered_words.clone().into_iter().filter(|word| {
+        all_possible_words = all_possible_words.clone().into_iter().filter(|word| {
             re.find_iter(&word.word).count() == 1
         }).map(|word| {
             word
         }).collect();
     });
 
-    let final_suggestion: Word = filtered_words.into_iter().fold(Word { word: "I give up", value: 0 }, |acc, word| {
+    let final_suggestion: Word = all_possible_words.into_iter().fold(Word { word: "I give up", value: 0 }, |acc, word| {
         if word.value > acc.value {
             word
         } else {
