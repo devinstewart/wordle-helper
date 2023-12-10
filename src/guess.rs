@@ -118,11 +118,9 @@ pub fn make_guess(mut known_status: KnownState) -> KnownState {
 
     known_status.word_contains_only_one.iter().enumerate().for_each(|(_i, letter)| {
         let re = Regex::new(&format!("{}", letter)).unwrap();
-        all_possible_words = all_possible_words.clone().into_iter().filter(|word| {
+        all_possible_words.retain(|word| {
             re.find_iter(&word.word).count() == 1
-        }).map(|word| {
-            word
-        }).collect();
+        });
     });
 
     let final_suggestion: Word = all_possible_words.into_iter().fold(Word { word: "I give up", value: 0 }, |acc, word| {
