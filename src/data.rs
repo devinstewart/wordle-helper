@@ -10027,5 +10027,6 @@ pub fn all_words() -> Vec<Word> {
         Word { word: "zupan", value: 45 },
         Word { word: "zuppa", value: 26 },
         Word { word: "zuzim", value: 5 },
-        Word { word: "zygon", value: 83 }    ]
+        Word { word: "zygon", value: 83 }
+    ]
 }
