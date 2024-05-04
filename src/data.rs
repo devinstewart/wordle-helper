@@ -9386,7 +9386,7 @@ pub fn all_words() -> Vec<Word> {
         Word { word: "valis", value: 39 },
         Word { word: "valor", value: 650 },
         Word { word: "valse", value: 26 },
-        Word { word: "v", value: 15058 },
+        Word { word: "value", value: 15058 },
         Word { word: "valve", value: 2296 },
         Word { word: "vamps", value: 226 },
         Word { word: "vampy", value: 11 },
